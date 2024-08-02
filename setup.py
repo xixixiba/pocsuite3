@@ -21,7 +21,7 @@ long_description = (
 
 setup(
     name='pocsuite3',
-    version='2.0.8',
+    version='2.0.9',
     url='https://pocsuite.org',
     description='Open-sourced remote vulnerability testing framework.',
     long_description=long_description,
@@ -34,7 +34,7 @@ setup(
     zip_safe=False,
     packages=find_packages(),
     include_package_data=True,
-    python_requires='>=3.6',
+    python_requires='>=3.8',
     entry_points={
         "console_scripts": [
             "pocsuite = pocsuite3.cli:main",
@@ -57,7 +57,8 @@ setup(
         "dacite",
         "PyYAML",
         "lxml",
-        "docker"
+        "docker",
+        "packaging"
     ],
     extras_require={
         'complete': [

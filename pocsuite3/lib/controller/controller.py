@@ -86,7 +86,7 @@ def show_task_result():
         if row.status == 'success':
             success_num += 1
 
-    data_to_stdout('\n{0}'.format(results_table.get_string(sortby="status", reversesort=True)))
+    data_to_stdout('\n{0}'.format(results_table.get_string(sortby="status", reversesort=False)))
     data_to_stdout("\nsuccess : {} / {}\n".format(success_num, total_num))
 
 
@@ -136,8 +136,13 @@ def task_run():
             else:
                 logger.warn("No libpcap is detected, and the poc will continue to execute without fetching the packet")
                 conf.pcap = False
+        info_msg = "running poc:'{0}' target '{1}'".format(
+            poc_name,
+            mosaic(target)
+        )
 
-        info_msg = "running poc:'{0}' target '{1}'".format(poc_name, mosaic(target))
+        if len(kb.targets) > 1:
+            info_msg += ", {0} tasks waiting to be executed.".format(kb.task_queue.qsize())
 
         logger.info(info_msg)
 
